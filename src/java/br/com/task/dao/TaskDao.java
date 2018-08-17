@@ -62,13 +62,12 @@ public class TaskDao {
                 task.setConcluido(rs.getBoolean("status"));
                 
                 tasks.add(task);
-                //rs.next();
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(TaskDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //Retorno com ou sem conteudo;
         return tasks;
     }
     
