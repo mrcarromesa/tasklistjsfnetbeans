@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <div class="main">
+        <h:form id="formId">
+            <p:fieldset legend="Tarefa: Cadastro/Edição">
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Título da Tarefa"></h:outputLabel>
+                    <p:inputText value="#{taskBean.task.titulo}"></p:inputText>
+                    <h:outputLabel value="Tarefa Concluída?"></h:outputLabel>
+                    <p:selectBooleanCheckbox value="#{taskBean.task.concluido}" />
+                </p:panelGrid>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Salvar" action="#{taskBean.add()}" update="@form"></p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </p:fieldset>
+            
+            <div class="space-top">
+                <p:fieldset legend="Tarefas">
+                    <p:dataTable id="carrosId" value="#{taskBean.tasks}" var="task">
+                        <p:column headerText="Título" sortBy="#{task.titulo}">
+                            <h:outputText value="#{task.titulo}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Concluído?">
+                            <h:outputText value="#{task.nameIsConcluido}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Ação">
+                            <p:commandButton icon="ui-icon-close" title="remove from cart" actionListener="#{taskBean.delete(task)}" update="carrosId" >
+                                <p:confirm header="Confirmação" message="Deseja realmente remover o registro?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:commandButton icon="ui-icon-pencil" title="edit from cart" actionListener="#{taskBean.edit(task)}" update=":formId" ></p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:fieldset>
+                
+            </div>
+
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+
+        </h:form>
+        
+    </div>
+</ui:decorate>
+
