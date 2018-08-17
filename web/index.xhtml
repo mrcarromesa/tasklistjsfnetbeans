@@ -33,10 +33,10 @@
                             <h:outputText value="#{task.nameIsConcluido}"></h:outputText>
                         </p:column>
                         <p:column headerText="Ação">
-                            <p:commandButton icon="ui-icon-close" title="remove from cart" actionListener="#{taskBean.delete(task)}" update="carrosId" >
+                            <p:commandButton icon="ui-icon-close" title="Remover" actionListener="#{taskBean.delete(task)}" update="carrosId" >
                                 <p:confirm header="Confirmação" message="Deseja realmente remover o registro?" icon="ui-icon-alert" />
                             </p:commandButton>
-                            <p:commandButton icon="ui-icon-pencil" title="edit from cart" actionListener="#{taskBean.edit(task)}" update=":formId" ></p:commandButton>
+                            <p:commandButton icon="ui-icon-pencil" title="Editar" actionListener="#{taskBean.edit(task)}" update=":formId" ></p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </p:fieldset>
